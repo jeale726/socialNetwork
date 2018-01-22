@@ -1,3 +1,7 @@
+body{
+	
+	background-color:#1da1f2;
+}
 .container{
 	margin-left: auto;
     margin-right: auto;
@@ -7,10 +11,38 @@
 
 #left-side{
 	float:left;
+	margin-right:10px;
 }
-
+h3{
+	text-align:center;
+	margin-top:inherit;
+}
 #right-side{
 	float:right;
 	width:250px;
 	height:400px;
+}
+#signup{
+	background-color:white;
+}
+#login{
+	background-color:white;
+	margin-bottom:10px;
+	vertical-align:bottom;
+}
+
+.row{
+	height:25px;
+	padding :0 10 0 10;
+}
+input {
+    width: 120px;
+    box-sizing: border-box;
+	text-align:center;
+	float:right;
+}
+button{
+	height: 25px;
+    width: 75px;
+	margin: 0 0 1 150;
 }
