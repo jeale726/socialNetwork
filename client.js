@@ -1,6 +1,26 @@
 displayView = function(){
    // the code required to display a view
 };
+
+validateForm = function() {
+
+	    var password = document.getElementById("password-sign-up");
+	    var repeatPassword = document.getElementById("repeatpassword");
+
+	    var message = document.getElementById("message");
+
+	    if (password.value.trim() != repeatPassword.value.trim()){
+	    	message.innerText = "Passwords are NOT the same!";
+	    	password.focus();
+	    	return false;
+	    }
+	    else{
+	    	message.innerText = "Passwords are the same!";
+	    	return true;
+	    }
+	};
+
+
 window.onload = function(){
    //code that is executed as the page is loaded.
    //You shall put your own custom code here.
@@ -8,22 +28,25 @@ window.onload = function(){
    //window.alert() is not allowed to be used in your implementation.
    //window.alert("Hello TDDD97!");
 
-    function validateForm() {
-
-	    var password = document.getElementById("password");
-	    var repeatPassword = document.getElementById("repeatPassword");
-
-	    if (password.value != repeatPassword.value){
-	    	password.focus();
-	    	window.alert("they are the same!");
-	    	//return false;
+    
+   $("#login-form").submit(function() {
+	    if(validateForm()){
+	    	return true;
 	    }
-	    else{
-	    	window.alert("they are NOT the same!");
-	    	//return true;
-	    }
-	}
+	    return false;
+	});
 
+   $("#sign-up-form").submit(function() {
+	    if(validateForm()){
+	    	// signup();  
+	    	// Change to true when you want to reload the page 
+	    	return false;
+	    }
+	    return false;
+	});
+
+	
+	
 	/*
     $('#login-btn').on("click",function(){
 
@@ -41,3 +64,33 @@ window.onload = function(){
 	*/
 
 };
+
+//Sign-up function called when the user submit the form to sign up (if the form is correctly filled)
+signup = function(){
+	// create a new JSON object
+	var newProfile = {
+			"email": formData.email.value.trim(),
+			"password": formData.password-sign-up.value.trim(),
+			"firstname": formData.firstname.value.trim(),
+			"gender": formData.gender.value.trim(),
+			"city": formData.city.value.trim(),
+			"country": formData.country.value.trim()
+	};
+	// try to sign up with this contact
+	var result = serverstub.signup(newProfile);
+	
+	// show an error message 
+	if(!result.succeed){
+		document.getElementById("message").innerText=result.message;
+		return false;
+	}
+	// else go to profile page
+	return true;
+	
+}
+
+//Sign-up function called when the user submit the form to login (if the form is correctly filled)
+signin = function(){
+	
+	
+}
