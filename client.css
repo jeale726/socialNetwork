@@ -39,8 +39,7 @@ input {
     width: 100px;
 	text-align:center;
 	float:right;
-	height:25px;
-	padding-bottom:0px;
+	/*height:25px;*/
 }
 button{
 	height: 25px;
@@ -56,5 +55,5 @@ button{
 label{
 	margin-bottom: 0px;
 	float: left;
-	font-size: smaller;
+	font-size: 15px;
 }

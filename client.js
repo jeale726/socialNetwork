@@ -67,7 +67,7 @@ window.onload = function(){
 signup = function(){
 	// create a new JSON object
 	var newProfile = {
-			"email": formData.email.value.trim(),
+			"email": formData.email-sign-up.value.trim(),
 			"password": formData.password-sign-up.value.trim(),
 			"firstname": formData.firstname.value.trim(),
 			"gender": formData.gender.value.trim(),
@@ -87,8 +87,10 @@ signup = function(){
 	
 }
 
-//Sign-up function called when the user submit the form to login (if the form is correctly filled)
+//Sign-in function called when the user submit the form to login (if the form is correctly filled)
 signin = function(){
-	
-	
+	var password = document.getElementById("password-login");
+	var username = document.getElementById("email-login");
+	var token =serverstub.signIn(username, password).data;
+	localStorage.setItem("loggedinusers", token);
 }
