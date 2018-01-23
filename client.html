@@ -18,7 +18,7 @@
 					<!-- Login -->
 					<div id="login">
 						<h3> Log in here !</h3>
-						<form id="login-form" method="PUT" action="#" onsubmit="validateForm();return false;">
+						<form id="login-form" method="PUT" action="#" onsubmit="validateForm();">
 							<div class="inner">
 								<div class="row"><label for="email" >Email* </label><input type="email" id="email" name="email-login" required></input></div>
 								<div class="row"><label for="password" >Password* </label><input type="password" id="password-login" name="password" required></input></div>
@@ -30,7 +30,7 @@
 					<!-- Signup -->
 					<div id="signup">
 						<h3> Sign up here !</h3>
-						<form id="sign-up-form"  method="PUT" action="#" onsubmit="return validateForm();return false;">
+						<form id="sign-up-form" name ="sign-up-form"  method="PUT" action="#" onsubmit="return signup()">
 							<div class="inner">
 								<div class="row"><label for="firstname">First name* </label><input type="text" id="firstname" name="firstname" required></input></div>
 								<div class="row"><label for="familyname" >Family name* </label><input type="text" id="familyname" name="familyname" required></input></div>
@@ -43,8 +43,8 @@
 								</div>
 								<div class="row"><label for="city" >City* </label><input type="text" id="city" name="city" required></input></div>
 								<div class="row"><label for="country" >Country* </label><input type="text" id="country" name="country" required></input></div>
-								<div class="row"><label for="email">Email* </label><input type="email" id="email-sign-up" name="email" required></input></div>
-								<div class="row"><label for="password" >Password* </label><input type="password" id="password-sign-up" name="password" required></input></div>
+								<div class="row"><label for="email">Email* </label><input type="email" id="emailsignup" name="emailsignup" required></input></div>
+								<div class="row"><label for="password" >Password* </label><input type="password" id="passwordsignup" name="passwordsignup" required></input></div>
 								<div class="row"><label for="repeatpassword" >Repeat password* </label><input type="password" id="repeatpassword" name="repeatpassword" required></input></div>
 								<!-- submit button for sign up-->
 								<button class="button" type="submit">Sign up</button>

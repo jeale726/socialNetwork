@@ -13,7 +13,7 @@ displayView = function(){
 
 validateForm = function() {
 
-	    var password = document.getElementById("password-sign-up");
+	    var password = document.getElementById("passwordsignup");
 	    var repeatPassword = document.getElementById("repeatpassword");
 
 	    var message = document.getElementById("message");
@@ -27,8 +27,47 @@ validateForm = function() {
 	    	message.innerText = "Passwords are the same!";
 	    	return true;
 	    }
-	};
+};
 
+//Sign-up function called when the user submit the form to sign up (if the form is correctly filled)
+signup = function(){
+	var formData = document.forms["sign-up-form"];
+	if(validateForm()){
+		// create a new JSON object
+		var newProfile = {
+				"email": formData.emailsignup.value.trim(),
+				"password": formData.passwordsignup.value.trim(),
+				"firstname": formData.firstname.value.trim(),
+				"familyname": formData.familyname.value.trim(),
+				"gender": formData.gender.value.trim(),
+				"city": formData.city.value.trim(),
+				"country": formData.country.value.trim()
+		};
+		// try to sign up with this contact
+		var result = serverstub.signUp(newProfile);
+		
+		// show an error message 
+		if(!result.succeed){
+			document.getElementById("message").innerText=result.message;
+			return false;
+		}
+		// else go to profile page
+		//TODO
+		}
+	return false;
+}
+
+//Sign-in function called when the user submit the form to login (if the form is correctly filled)
+signin = function(){
+	if(validateForm()){
+		var password = document.getElementById("password-login");
+		var username = document.getElementById("email-login");
+		var token =serverstub.signIn(username, password).data;
+		localStorage.setItem("loggedinuser", token);
+		return true;
+	}
+	return false;
+}
 
 window.onload = function(){
    //code that is executed as the page is loaded.
@@ -36,7 +75,7 @@ window.onload = function(){
    //document.getElementById("body").innerHTML= "hello";
    //window.alert() is not allowed to be used in your implementation.
    //window.alert("Hello TDDD97!");
-
+/*
     
    $("#login-form").submit(function() {
 	    if(validateForm()){
@@ -51,7 +90,7 @@ window.onload = function(){
 	    }
 	    return false;
 	});
-
+*/
 	
 	
 	/*
@@ -72,34 +111,3 @@ window.onload = function(){
 
 };
 
-//Sign-up function called when the user submit the form to sign up (if the form is correctly filled)
-signup = function(){
-	// create a new JSON object
-	var newProfile = {
-			"email": formData.email-sign-up.value.trim(),
-			"password": formData.password-sign-up.value.trim(),
-			"firstname": formData.firstname.value.trim(),
-			"gender": formData.gender.value.trim(),
-			"city": formData.city.value.trim(),
-			"country": formData.country.value.trim()
-	};
-	// try to sign up with this contact
-	var result = serverstub.signup(newProfile);
-	
-	// show an error message 
-	if(!result.succeed){
-		document.getElementById("message").innerText=result.message;
-		return false;
-	}
-	// else go to profile page
-	return true;
-	
-}
-
-//Sign-in function called when the user submit the form to login (if the form is correctly filled)
-signin = function(){
-	var password = document.getElementById("password-login");
-	var username = document.getElementById("email-login");
-	var token =serverstub.signIn(username, password).data;
-	localStorage.setItem("loggedinuser", token);
-}
