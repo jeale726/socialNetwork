@@ -38,9 +38,7 @@ window.onload = function(){
 
    $("#sign-up-form").submit(function() {
 	    if(validateForm()){
-	    	// signup();  
-	    	// Change to true when you want to reload the page 
-	    	return false;
+	    	 return signup();  
 	    }
 	    return false;
 	});
