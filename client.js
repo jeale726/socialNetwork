@@ -1,5 +1,14 @@
 displayView = function(){
-   // the code required to display a view
+   var token =localStorage.getItem("loggedinuser");
+   var data =serverstub.getUserDataByToken(token);
+   if(data.success==true){
+	   // go to the profile view
+	   window.alert("You are logged");
+	   document.getElementById("welcomeview");
+   }else{
+	   // go to the welcome view
+	   window.alert("welcome");
+   }
 };
 
 validateForm = function() {
@@ -92,5 +101,5 @@ signin = function(){
 	var password = document.getElementById("password-login");
 	var username = document.getElementById("email-login");
 	var token =serverstub.signIn(username, password).data;
-	localStorage.setItem("loggedinusers", token);
+	localStorage.setItem("loggedinuser", token);
 }
