@@ -54,24 +54,20 @@ signup = function(){
 		// show an error message 
 		if(!result.succeed){
 			document.getElementById("message").innerText=result.message;
-			return false;
 		}
-		// else go to profile page
-		//TODO
+			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 		}
 	return false;
 }
 
 //Sign-in function called when the user submit the form to login (if the form is correctly filled)
 signin = function(){
-	if(validateForm()){
 		var password = document.getElementById("password-login");
 		var username = document.getElementById("email-login");
 		var token =serverstub.signIn(username, password).data;
 		localStorage.setItem("loggedinuser", token);
-		return true;
-	}
-	return false;
+		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+		return false;
 }
 
 window.onload = function(){
