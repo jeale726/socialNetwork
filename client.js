@@ -1,13 +1,10 @@
-displayView = function(){
+displayview = function(){
    var token =localStorage.getItem("loggedinuser");
    var data =serverstub.getUserDataByToken(token);
    if(data.success==true){
-	   // go to the profile view
-	   window.alert("You are logged");
-	   document.getElementById("welcomeview");
+	   document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
    }else{
-	   // go to the welcome view
-	   window.alert("welcome");
+	document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
    }
 };
 
@@ -70,6 +67,10 @@ signin = function(){
 }
 
 window.onload = function(){
+	
+	displayview();
+	
+	
    //code that is executed as the page is loaded.
    //You shall put your own custom code here.
    //document.getElementById("body").innerHTML= "hello";
