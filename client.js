@@ -14,7 +14,9 @@ validateForm = function() {
 	    var repeatPassword = document.getElementById("repeatpassword");
 
 	    var message = document.getElementById("message");
+	    var X = 6;
 
+	    // Passwords validation ----------------------------------
 	    if (password.value.trim() != repeatPassword.value.trim()){
 	    	message.innerText = "Passwords are NOT the same!";
 	    	password.focus();
@@ -22,9 +24,15 @@ validateForm = function() {
 	    }
 	    else{
 	    	message.innerText = "Passwords are the same!";
+
+	    	// Characters long validation ----------------------------
+		    if(password.value.trim().length < X || repeatPassword.value.trim().length < X){
+		    	message.innerText = "Passwords are too short!";
+		    	return false;
+		    }
 	    	return true;
 	    }
-};
+	};
 
 //Sign-up function called when the user submit the form to sign up (if the form is correctly filled)
 signup = function(){
@@ -76,22 +84,6 @@ window.onload = function(){
    //document.getElementById("body").innerHTML= "hello";
    //window.alert() is not allowed to be used in your implementation.
    //window.alert("Hello TDDD97!");
-/*
-    
-   $("#login-form").submit(function() {
-	    if(validateForm()){
-	    	return true;
-	    }
-	    return false;
-	});
-
-   $("#sign-up-form").submit(function() {
-	    if(validateForm()){
-	    	 return signup();  
-	    }
-	    return false;
-	});
-*/
 	
 	
 	/*
