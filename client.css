@@ -39,7 +39,7 @@ input {
     width: 100px;
 	text-align:center;
 	float:right;
-	/*height:25px;*/
+	height:25px;
 }
 button{
 	height: 25px;
@@ -55,7 +55,6 @@ button{
 label{
 	margin-bottom: 0px;
 	float: left;
-	font-size: 15px;
 }
 #message{
 	color:red;
