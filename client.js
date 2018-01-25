@@ -117,10 +117,6 @@ displaypanel = {
 		}
 	}
 	
-	account: function(){
-		//TODO
-	}
-	
 }
 
 window.onload = function(){
