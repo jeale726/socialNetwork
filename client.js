@@ -52,7 +52,7 @@ signup = function(){
 		var result = serverstub.signUp(newProfile);
 		
 		// show an error message 
-		if(!result.succeed){
+		if(!result.success){
 			document.getElementById("message").innerText=result.message;
 		}else{
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
