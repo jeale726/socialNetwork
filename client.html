@@ -16,7 +16,7 @@
 					<!-- Login -->
 					<div id="login">
 						<h3> Log in here !</h3>
-						<form id="login-form" method="PUT" action="#">
+						<form id="login-form" method="PUT" action="#" onsubmit="return signin()">
 							<div class="inner">
 								<div class="row"><label for="email" >Email* </label><input type="email" id="email" name="email-login" required></input></div>
 								<div class="row"><label for="password" >Password* </label><input type="password" id="password-login" name="password" required></input></div>
@@ -58,12 +58,13 @@
 
 	
 		<script id="profileview" type="text/view">
+
 			<ul>
-			  <li><a class="active" href="#home">Home</a></li>
-			  <li><a href="#news">News</a></li>
-			  <li><a href="#contact">Contact</a></li>
-			  <li><a href="#about">About</a></li>
+			  <li><a id="homenav" class="active" href="#home" onclick="clicknavbutton(this.id)">Home</a></li>
+			  <li><a id="browsenav" href="#news" onclick="clicknavbutton(this.id)">Browse</a></li>
+			  <li><a id="accountnav" href="#contact" onclick="clicknavbutton(this.id)">Account</a></li>
 			</ul>
+
 		</script>
 
     </head>

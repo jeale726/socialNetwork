@@ -54,24 +54,34 @@ signup = function(){
 		// show an error message 
 		if(!result.succeed){
 			document.getElementById("message").innerText=result.message;
-			return false;
 		}
-		// else go to profile page
-		//TODO
+			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 		}
 	return false;
 }
 
 //Sign-in function called when the user submit the form to login (if the form is correctly filled)
 signin = function(){
-	if(validateForm()){
 		var password = document.getElementById("password-login");
 		var username = document.getElementById("email-login");
 		var token =serverstub.signIn(username, password).data;
 		localStorage.setItem("loggedinuser", token);
-		return true;
+		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+		return false;
+}
+
+clicknavbutton = function(id){
+	var button_nav = document.getElementById(id);
+
+	if(!button_nav.classList.contains("active")){
+
+		var active_button = document.getElementsByClassName("active")[0];
+		active_button.classList.remove("active");
+
+		button_nav.classList.add("active");
 	}
-	return false;
+
+
 }
 
 window.onload = function(){
@@ -84,6 +94,9 @@ window.onload = function(){
    //document.getElementById("body").innerHTML= "hello";
    //window.alert() is not allowed to be used in your implementation.
    //window.alert("Hello TDDD97!");
+
+
+
 	
 	
 	/*
