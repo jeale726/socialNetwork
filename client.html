@@ -18,10 +18,10 @@
 						<h3> Log in here !</h3>
 						<form id="login-form" name="login-form" method="PUT" action="#" onsubmit="return signin()">
 							<div class="inner">
-								<div class="row"><label for="email" >Email* </label><input type="email" id="emaillogin" name="emaillogin" required></input></div>
-								<div class="row"><label for="password" >Password* </label><input type="password" id="passwordlogin" name="passwordlogin" required></input></div>
+								<div class="row"><label for="email" >Email* </label><input class="welcomeinput" type="email" id="emaillogin" name="emaillogin" required></input></div>
+								<div class="row"><label for="password" >Password* </label><input class="welcomeinput" type="password" id="passwordlogin" name="passwordlogin" required></input></div>
 								<!-- submit button for login-->
-								<button class="button" type="submit">Login</button>
+								<button class="welcomebutton" type="submit">Login</button>
 							</div>
 						</form>
 					</div>
@@ -30,22 +30,22 @@
 						<h3> Sign up here !</h3>
 						<form id="sign-up-form" name ="sign-up-form"  method="PUT" action="#" onsubmit="return signup()">
 							<div class="inner">
-								<div class="row"><label for="firstname">First name* </label><input type="text" id="firstname" name="firstname" required></input></div>
-								<div class="row"><label for="familyname" >Family name* </label><input type="text" id="familyname" name="familyname" required></input></div>
+								<div class="row"><label for="firstname">First name* </label><input class="welcomeinput" type="text" id="firstname" name="firstname" required></input></div>
+								<div class="row"><label for="familyname" >Family name* </label><input class="welcomeinput" type="text" id="familyname" name="familyname" required></input></div>
 								<div class="row">
 									<label for="gender" >Gender* </label>
 										<select id="gender" name="gender">
-										  <option>M</option>
-										  <option>F</option>
+										  <option>Male</option>
+										  <option>Female</option>
 										</select>
 								</div>
-								<div class="row"><label for="city" >City* </label><input type="text" id="city" name="city" required></input></div>
-								<div class="row"><label for="country" >Country* </label><input type="text" id="country" name="country" required></input></div>
-								<div class="row"><label for="email">Email* </label><input type="email" id="emailsignup" name="emailsignup" required></input></div>
-								<div class="row"><label for="password" >Password* </label><input type="password" id="passwordsignup" name="passwordsignup" required></input></div>
-								<div class="row"><label for="repeatpassword" >Repeat pwd* </label><input type="password" id="repeatpassword" name="repeatpassword" required></input></div>
+								<div class="row"><label for="city" >City* </label><input class="welcomeinput" type="text" id="city" name="city" required></input></div>
+								<div class="row"><label for="country" >Country* </label><input class="welcomeinput" type="text" id="country" name="country" required></input></div>
+								<div class="row"><label for="email">Email* </label><input class="welcomeinput" type="email" id="emailsignup" name="emailsignup" required></input></div>
+								<div class="row"><label for="password" >Password* </label><input class="welcomeinput" type="password" id="passwordsignup" name="passwordsignup" required></input></div>
+								<div class="row"><label for="repeatpassword" >Repeat pwd* </label><input class="welcomeinput" type="password" id="repeatpassword" name="repeatpassword" required></input></div>
 								<!-- submit button for sign up-->
-								<button class="button" type="submit">Sign up</button>
+								<button class="welcomebutton" type="submit">Sign up</button>
 							</div>
 						</form>
 						<label id="message"></label>
@@ -65,6 +65,22 @@
 			  <li><a id="accountnav" href="#contact" onclick="clicknavbutton(this.id)">Account</a></li>
 			</ul>
 
+			<!-- homeView with profile and wall-->
+			<div id="home">
+				<div id="profile">
+					<div ><img id="profilepicture" src="profilePicture.png" alt="profileImage"></div>
+					<div id="homeusername" ></div>
+					<div id="homegender" ></div>
+					<div id="homecity" ></div>
+					<div id="homecountry" ></div>
+					
+					<div id="homeemail"></div>
+				</div>
+				<div id="wall">
+					<input type="text" id="postmessage" name="postmessage" placeholder="Post a message to the wall here"></input>
+					<button id="postbutton" >Post message</button>
+				</div>
+			</div>
 		</script>
 
     </head>

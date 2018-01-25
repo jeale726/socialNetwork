@@ -35,13 +35,13 @@ h3{
 	height:25px;
 	padding :0 10 0 10;
 }
-input {
+.welcomeinput{
     width: 100px;
 	text-align:center;
 	float:right;
 	height:25px;
 }
-button{
+.welcomebutton{
 	height: 25px;
     width: 75px;
 	margin: 0 0 1 150;
@@ -88,4 +88,51 @@ li a:hover:not(.active) {
 
 .active {
     background-color: red;
+}
+/* Home page styles ----------------------*/
+
+/* profile part*/
+#profile{
+	margin-top:50;
+	margin-left:30%;
+}
+
+#profilepicture{
+	height:150px;
+	float:left;
+	margin-right:20px;
+}
+
+#homeusername{
+	font-size:35px;
+}
+#homeemail{
+	font-style:oblique;
+	padding-top:10px;
+}
+
+#wall{
+	margin-top:100px;
+}
+
+/* wall part*/
+
+#postmessage{
+	background-color: white;
+	padding: 10px 25px;
+	width:40%;
+	margin-left:25%;
+}
+#postbutton{
+	 background-color: red;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#home{
+	display:block;
 }

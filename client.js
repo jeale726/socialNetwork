@@ -1,9 +1,15 @@
 displayview = function(){
+	//get the token in the local storage
    var token =localStorage.getItem("loggedinuser");
    var data =serverstub.getUserDataByToken(token);
+   // check if this token exists in our server
    if(data.success){
+	   // if it exists, show the profile view
 	   document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+	   // display home page
+	   displaypanel.profile(token);
    }else{
+	// else show the welcome view
 	document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
    }
 };
@@ -54,9 +60,12 @@ signup = function(){
 		if(!result.success){
 			document.getElementById("message").innerText=result.message;
 		}else{
+			// shox the profile view and store the token into le local storage
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 			var signingin=serverstub.signIn(newProfile.email,newProfile.password);
 			localStorage.setItem("loggedinuser",signingin.data);
+			// display profile of the current user
+			displaypanel.profile(signingin.data);
 		}
 	}
 	return false;
@@ -68,9 +77,12 @@ signin = function(){
 		//receive the token from the server and see if the user exist
 		var result =serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim());
 		if(result.success){
+			// if the user exist display his profile view and stor the token in the local storage
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 			localStorage.setItem("loggedinuser",result.data);
+			displaypanel.profile(result.data);
 		}
+		// else display an error message
 		message.innerText = result.message;
 		return false;
 }
@@ -86,23 +98,34 @@ clicknavbutton = function(id){
 		button_nav.classList.add("active");
 	}
 
+}
 
+displaypanel = {
+	
+	// show the profile of a person depending on the token in parameter
+	profile: function(token){
+		var token = localStorage.getItem("loggedinuser");
+		// get the data of the user from the server depending on his token
+		var result= serverstub.getUserDataByToken(token);
+		if(result.success){
+			// display all the data of the user
+			document.getElementById("homeusername").innerText=result.data.firstname +" " + result.data.familyname;
+			document.getElementById("homegender").innerText=result.data.gender;
+			document.getElementById("homeemail").innerText=result.data.email;
+			document.getElementById("homecity").innerText=result.data.city;
+			document.getElementById("homecountry").innerText=result.data.country;
+		}
+	}
+	
+	account: function(){
+		//TODO
+	}
+	
 }
 
 window.onload = function(){
 	
 	displayview();
-	
-	
-   //code that is executed as the page is loaded.
-   //You shall put your own custom code here.
-   //document.getElementById("body").innerHTML= "hello";
-   //window.alert() is not allowed to be used in your implementation.
-   //window.alert("Hello TDDD97!");
-
-
-
-	
 	
 	/*
     $('#login-btn').on("click",function(){
