@@ -54,19 +54,21 @@ signup = function(){
 		// show an error message 
 		if(!result.succeed){
 			document.getElementById("message").innerText=result.message;
-		}
+		}else{
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 		}
+	}
 	return false;
 }
 
 //Sign-in function called when the user submit the form to login (if the form is correctly filled)
 signin = function(){
-		var password = document.getElementById("password-login");
-		var username = document.getElementById("email-login");
-		var token =serverstub.signIn(username, password).data;
-		localStorage.setItem("loggedinuser", token);
-		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+		var formData = document.forms["login-form"];
+		var tokencorrect =serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim()).data;
+		if(tokencorrect.success){
+			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+		}
+		message.innerText = tokencorrect.message;
 		return false;
 }
 
@@ -98,5 +100,5 @@ window.onload = function(){
 	});
 	*/
 
-};
+}
 
