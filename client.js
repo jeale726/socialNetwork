@@ -7,7 +7,7 @@ displayview = function(){
 	   // if it exists, show the profile view
 	   document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 	   // display home page
-	   displaypanel.profile(token);
+	   displaypanel.profile();
    }else{
 	// else show the welcome view
 	document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
@@ -65,7 +65,7 @@ signup = function(){
 			var signingin=serverstub.signIn(newProfile.email,newProfile.password);
 			localStorage.setItem("loggedinuser",signingin.data);
 			// display profile of the current user
-			displaypanel.profile(signingin.data);
+			displaypanel.profile();
 		}
 	}
 	return false;
@@ -80,7 +80,7 @@ signin = function(){
 			// if the user exist display his profile view and stor the token in the local storage
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 			localStorage.setItem("loggedinuser",result.data);
-			displaypanel.profile(result.data);
+			displaypanel.profile();
 		}
 		// else display an error message
 		message.innerText = result.message;
@@ -103,7 +103,7 @@ clicknavbutton = function(id){
 displaypanel = {
 	
 	// show the profile of a person depending on the token in parameter
-	profile: function(token){
+	profile: function(){
 		var token = localStorage.getItem("loggedinuser");
 		// get the data of the user from the server depending on his token
 		var result= serverstub.getUserDataByToken(token);
@@ -115,7 +115,33 @@ displaypanel = {
 			document.getElementById("homecity").innerText=result.data.city;
 			document.getElementById("homecountry").innerText=result.data.country;
 		}
+		displaymessages();
 	}
+	
+}
+// methode to post a message to a wall
+postmessage = function(){
+	var message = document.getElementById("postmessage").value.trim();
+	// if the message is not null, send it to the server
+	if(message!=""){
+		var token = localStorage.getItem("loggedinuser");
+		var email = document.getElementById("homeemail").innerText;
+		serverstub.postMessage(token, message, email);
+		document.getElementById("postmessage").value="";
+	}
+	return false;
+}
+
+displaymessages= function(){
+	var email = document.getElementById("homeemail").innerText;
+	var token = localStorage.getItem("loggedinuser");
+	var messages = serverstub.getUserMessagesByEmail(token,email);
+	var result=""
+	for (var i=0; i<messages.data.length;i++){
+		result+="<div class='postername'>"+messages.data[i].writer+"</div>";
+		result+="<div class='postermessage'>"+messages.data[i].content+" </div>";
+	}
+	document.getElementById("messages").innerHTML=result;
 	
 }
 

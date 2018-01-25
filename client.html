@@ -77,9 +77,17 @@
 					<div id="homeemail"></div>
 				</div>
 				<div id="wall">
+				
 					<input type="text" id="postmessage" name="postmessage" placeholder="Post a message to the wall here"></input>
-					<button id="postbutton" >Post message</button>
-					<button id="refreshbutton" >Refresh</button>
+					<button id="postbutton" onclick="postmessage()" >Post message</button>
+					<button id="refreshbutton" onclick="displaymessages()">Refresh</button>
+				</form>
+					<div id="messages">
+						<div class="postername">jean-baptiste@leprince.net</div>
+						<div class="postermessage">Ceci est un message d'essai </div>
+						<div class="postername">jean-baptiste@leprince.net</div>
+						<div class="postermessage">Ceci est un message d'essai</div>
+					</div>
 				</div>
 			</div>
 		</script>

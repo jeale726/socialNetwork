@@ -121,13 +121,13 @@ li a:hover:not(.active) {
 	background-color: white;
 	padding: 10px 25px;
 	width:40%;
-	margin-left:25%;
+	margin-left:20%;
 }
 #postbutton{
 	 background-color: red;
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 16px 16px;
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
@@ -136,7 +136,7 @@ li a:hover:not(.active) {
 	 background-color: black;
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 16px 16px;
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
@@ -145,4 +145,17 @@ li a:hover:not(.active) {
 
 #home{
 	display:block;
+}
+
+#messages{
+	margin-left:20%;
+	margin-top:20px;
+}
+.postername{
+	font-style:oblique;
+	
+}
+.postermessage{
+	font-size:25px;
+	margin-bottom:15px;
 }
