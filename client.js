@@ -1,7 +1,7 @@
 displayview = function(){
    var token =localStorage.getItem("loggedinuser");
    var data =serverstub.getUserDataByToken(token);
-   if(data.success==true){
+   if(data.success){
 	   document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
    }else{
 	document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
@@ -34,7 +34,7 @@ validateForm = function() {
 	    }
 	};
 
-//Sign-up function called when the user submit the form to sign up (if the form is correctly filled)
+//Sign-up function called when the user submit the form to sign up
 signup = function(){
 	var formData = document.forms["sign-up-form"];
 	if(validateForm()){
@@ -50,25 +50,28 @@ signup = function(){
 		};
 		// try to sign up with this contact
 		var result = serverstub.signUp(newProfile);
-		
 		// show an error message 
 		if(!result.success){
 			document.getElementById("message").innerText=result.message;
 		}else{
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+			var signingin=serverstub.signIn(newProfile.email,newProfile.password);
+			localStorage.setItem("loggedinuser",signingin.data);
 		}
 	}
 	return false;
 }
 
-//Sign-in function called when the user submit the form to login (if the form is correctly filled)
+//Sign-in function called when the user submit the form to login
 signin = function(){
 		var formData = document.forms["login-form"];
-		var tokencorrect =serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim()).data;
-		if(tokencorrect.success){
+		//receive the token from the server and see if the user exist
+		var result =serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim());
+		if(result.success){
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+			localStorage.setItem("loggedinuser",result.data);
 		}
-		message.innerText = tokencorrect.message;
+		message.innerText = result.message;
 		return false;
 }
 
