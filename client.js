@@ -59,6 +59,7 @@ signup = function(){
 		// show an error message 
 		if(!result.success){
 			document.getElementById("message").innerText=result.message;
+			 var username = document.getElementById("username");
 		}else{
 			// shox the profile view and store the token into le local storage
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
@@ -103,10 +104,15 @@ clicknavbutton = function(id){
 displaypanel = {
 	
 	// show the profile of a person depending on the token in parameter
-	profile: function(){
+	profile: function(email=""){
 		var token = localStorage.getItem("loggedinuser");
 		// get the data of the user from the server depending on his token
-		var result= serverstub.getUserDataByToken(token);
+		if(email==""){
+			var result= serverstub.getUserDataByToken(token);
+		}else{
+			var result= serverstub.getUserDataByEmail(token,email);
+		}
+		
 		if(result.success){
 			// display all the data of the user
 			document.getElementById("homeusername").innerText=result.data.firstname +" " + result.data.familyname;
@@ -132,6 +138,7 @@ postmessage = function(){
 	return false;
 }
 
+/*display messages of all the current profile -- also called to refresh a page*/
 displaymessages= function(){
 	var email = document.getElementById("homeemail").innerText;
 	var token = localStorage.getItem("loggedinuser");
@@ -143,6 +150,20 @@ displaymessages= function(){
 	}
 	document.getElementById("messages").innerHTML=result;
 	
+}
+
+// find the profile with the username given by the input
+searchprofile = function(){
+	var email = document.getElementById("search").value.trim();
+	var token = localStorage.getItem("loggedinuser");
+	var result=serverstub.getUserMessagesByEmail(token,email);
+	if(result.success){// if the user exists
+		//show profile
+		displaypanel.profile(email);
+		document.getElementById("messageusername").innerText="";
+	}else{
+		document.getElementById("messageusername").innerText=serverstub.getUserMessagesByEmail(token,email).message;
+	}
 }
 
 window.onload = function(){

@@ -61,10 +61,19 @@
 
 			<ul>
 			  <li><a id="homenav" class="active" href="#home" onclick="clicknavbutton(this.id)">Home</a></li>
-			  <li><a id="browsenav" href="#news" onclick="clicknavbutton(this.id)">Browse</a></li>
-			  <li><a id="accountnav" href="#contact" onclick="clicknavbutton(this.id)">Account</a></li>
+			  <li><a id="browsenav" href="#browse" onclick="clicknavbutton(this.id)">Browse</a></li>
+			  <li><a id="accountnav" href="#account" onclick="clicknavbutton(this.id)">Account</a></li>
 			</ul>
 
+			
+			<!-- search bar to find other profile-->
+			<div id="browse">
+				<input type="text" class="inputprofile" id="search" name="searchbar" placeholder="Search for an address here"></input>
+				<img id="searchicon" src="searchicon.png" alt="searchicon" onclick="searchprofile()"></img>
+				<!--<button class="basicbutton" onclick="searchprofile()" >Search profile</button>-->
+				<div id="messageusername" ></div>
+			</div>
+			
 			<!-- homeView with profile and wall-->
 			<div id="home">
 				<div id="profile">
@@ -78,15 +87,11 @@
 				</div>
 				<div id="wall">
 				
-					<input type="text" id="postmessage" name="postmessage" placeholder="Post a message to the wall here"></input>
-					<button id="postbutton" onclick="postmessage()" >Post message</button>
-					<button id="refreshbutton" onclick="displaymessages()">Refresh</button>
+					<input type="text" class="inputprofile" id="postmessage" name="postmessage" placeholder="Post a message to the wall here"></input>
+					<button class="basicbutton" onclick="postmessage()" >Post message</button>
+					<button class="basicbutton" id="refreshbutton" onclick="displaymessages()">Refresh</button>
 				</form>
 					<div id="messages">
-						<div class="postername">jean-baptiste@leprince.net</div>
-						<div class="postermessage">Ceci est un message d'essai </div>
-						<div class="postername">jean-baptiste@leprince.net</div>
-						<div class="postermessage">Ceci est un message d'essai</div>
 					</div>
 				</div>
 			</div>
