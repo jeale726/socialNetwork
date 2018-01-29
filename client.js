@@ -88,8 +88,13 @@ signin = function(){
 		return false;
 }
 
+//validatePassForm = function(){
+
+//}
+
 clicknavbutton = function(id){
 	var button_nav = document.getElementById(id);
+	var token = localStorage.getItem("loggedinuser");
 
 	if(!button_nav.classList.contains("active")){
 
@@ -97,6 +102,45 @@ clicknavbutton = function(id){
 		active_button.classList.remove("active");
 
 		button_nav.classList.add("active");
+	}
+
+	if(id == "homenav"){
+		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+		var changinin=serverstub.signIn(newProfile.email,newProfile.password);
+		localStorage.setItem("loggedinuser",changinin.data);
+		// display profile of the current user
+		//displaypanel.profile();
+	}
+	else if(id == "browsenav"){
+		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+		var changinin=serverstub.signIn(newProfile.email,newProfile.password);
+		localStorage.setItem("loggedinuser",changinin.data);
+		// display profile of the current user
+		displaypanel.profile();
+	}
+	else if(id == "accountnav"){
+
+		var formData = document.forms["changepass-form"];
+		if(true){
+
+			var old_pass = formData.oldpass.value.trim();
+			var new_pass = formData.newpass.value.trim();
+
+			// try to sign up with this contact
+			var result = serverstub.changePassword(token, old_pass, new_pass);
+			// show an error message 
+			if(!result.success){
+				document.getElementById("messages").innerText=result.message;
+			}else{
+				document.getElementById("maincontainer").innerHTML=document.getElementById("accountview").innerHTML;
+				//var changinin=serverstub.changePassword(newProfile.email,newProfile.password);
+				//localStorage.setItem("loggedinuser",changinin.data);
+				// display profile of the current user
+				//displaypanel.profile();
+			}
+		}
+		return false;
+
 	}
 
 }

@@ -90,12 +90,48 @@
 					<input type="text" class="inputprofile" id="postmessage" name="postmessage" placeholder="Post a message to the wall here"></input>
 					<button class="basicbutton" onclick="postmessage()" >Post message</button>
 					<button class="basicbutton" id="refreshbutton" onclick="displaymessages()">Refresh</button>
-				</form>
+
 					<div id="messages">
 					</div>
 				</div>
 			</div>
 		</script>
+
+
+		
+		<script id="accountview" type="text/view">
+
+			<ul>
+			  <li><a id="homenav" class="active" href="#home" onclick="clicknavbutton(this.id)">Home</a></li>
+			  <li><a id="browsenav" href="#browse" onclick="clicknavbutton(this.id)">Browse</a></li>
+			  <li><a id="accountnav" href="#account" onclick="clicknavbutton(this.id)">Account</a></li>
+			</ul>
+		
+			<!-- homeView with profile and wall-->
+			<div id="account">
+				<div>
+					<div id="changepass">
+						<h3> Log in here !</h3>
+						<form id="changepass-form" name="changepass-form" method="PUT" action="#"> <!--onsubmit="return signin()"> --> 
+							<div class="inner">
+								<div class="row"><label for="email" >Old Pass* </label><input class="welcomeinput" type="password" id="oldpass" required></input></div>
+								<div class="row"><label for="password" >New Pass* </label><input class="welcomeinput" type="password" id="newpass" required></input></div>
+								<!-- submit button for changepass-->
+								<button class="welcomebutton" type="submit">Login</button>
+
+								<div id="messages">
+								</div>
+
+							</div>
+						</form>
+					</div>
+				</div>
+				
+			</div>
+		</script>
+
+
+
 
     </head>
     <body>
