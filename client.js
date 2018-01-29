@@ -5,6 +5,7 @@ displayview = function(){
    // check if this token exists in our server
    if(data.success){
 	   // if it exists, show the profile view
+	   document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
 	   document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 	   // display home page
 	   displaypanel.profile();
@@ -92,6 +93,13 @@ signin = function(){
 
 //}
 
+signout = function(token){
+	//var token = localStorage.getItem("loggedinuser");
+	serverstub.signOut(token);
+	localStorage.removeItem("loggedinuser");
+	document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
+}
+
 clicknavbutton = function(id){
 	var button_nav = document.getElementById(id);
 	var token = localStorage.getItem("loggedinuser");
@@ -106,19 +114,22 @@ clicknavbutton = function(id){
 
 	if(id == "homenav"){
 		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
-		var changinin=serverstub.signIn(newProfile.email,newProfile.password);
-		localStorage.setItem("loggedinuser",changinin.data);
-		// display profile of the current user
-		//displaypanel.profile();
-	}
-	else if(id == "browsenav"){
-		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
-		var changinin=serverstub.signIn(newProfile.email,newProfile.password);
-		localStorage.setItem("loggedinuser",changinin.data);
+		//var changinin=serverstub.signIn(newProfile.email,newProfile.password);
+		//localStorage.setItem("loggedinuser",changinin.data);
 		// display profile of the current user
 		displaypanel.profile();
 	}
+	else if(id == "browsenav"){
+		//document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+		//var changinin=serverstub.signIn(newProfile.email,newProfile.password);
+		//localStorage.setItem("loggedinuser",changinin.data);
+		// display profile of the current user
+		//displaypanel.profile();
+		console.log("browse");
+	}
 	else if(id == "accountnav"){
+
+		document.getElementById("maincontainer").innerHTML=document.getElementById("accountview").innerHTML;
 
 		var formData = document.forms["changepass-form"];
 		if(true){
@@ -132,15 +143,18 @@ clicknavbutton = function(id){
 			if(!result.success){
 				document.getElementById("messages").innerText=result.message;
 			}else{
-				document.getElementById("maincontainer").innerHTML=document.getElementById("accountview").innerHTML;
+				//document.getElementById("maincontainer").innerHTML=document.getElementById("accountview").innerHTML;
 				//var changinin=serverstub.changePassword(newProfile.email,newProfile.password);
 				//localStorage.setItem("loggedinuser",changinin.data);
 				// display profile of the current user
 				//displaypanel.profile();
+				console.log("else");
 			}
 		}
+		else if(id == "logoutnav"){
+			signout(token);
+		}
 		return false;
-
 	}
 
 }

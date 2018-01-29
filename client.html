@@ -54,16 +54,19 @@
 			</div>
 	
 		</script>
-	
 
-	
-		<script id="profileview" type="text/view">
 
+		<script id="navview" type="text/view">
 			<ul>
 			  <li><a id="homenav" class="active" href="#home" onclick="clicknavbutton(this.id)">Home</a></li>
 			  <li><a id="browsenav" href="#browse" onclick="clicknavbutton(this.id)">Browse</a></li>
 			  <li><a id="accountnav" href="#account" onclick="clicknavbutton(this.id)">Account</a></li>
 			</ul>
+		</script>
+	
+
+	
+		<script id="profileview" type="text/view">
 
 			
 			<!-- search bar to find other profile-->
@@ -100,27 +103,28 @@
 
 		
 		<script id="accountview" type="text/view">
-
-			<ul>
-			  <li><a id="homenav" class="active" href="#home" onclick="clicknavbutton(this.id)">Home</a></li>
-			  <li><a id="browsenav" href="#browse" onclick="clicknavbutton(this.id)">Browse</a></li>
-			  <li><a id="accountnav" href="#account" onclick="clicknavbutton(this.id)">Account</a></li>
-			</ul>
 		
 			<!-- homeView with profile and wall-->
 			<div id="account">
-				<div>
+				<div class="container">
 					<div id="changepass">
-						<h3> Log in here !</h3>
+						<h3> You can change your password here!</h3>
 						<form id="changepass-form" name="changepass-form" method="PUT" action="#"> <!--onsubmit="return signin()"> --> 
 							<div class="inner">
 								<div class="row"><label for="email" >Old Pass* </label><input class="welcomeinput" type="password" id="oldpass" required></input></div>
 								<div class="row"><label for="password" >New Pass* </label><input class="welcomeinput" type="password" id="newpass" required></input></div>
+								<div class="row"><label for="password" >Repeat New Pass* </label><input class="welcomeinput" type="password" id="repeatnewpass" required></input></div>
 								<!-- submit button for changepass-->
-								<button class="welcomebutton" type="submit">Login</button>
+								
+								<div class="center">
+									<button class="basicbutton" id="changepassbutton" type="submit">Change Password</button>
 
-								<div id="messages">
+									<div id="message">
+									</div>
 								</div>
+
+
+								
 
 							</div>
 						</form>
@@ -135,9 +139,11 @@
 
     </head>
     <body>
+
+    	<div id="navcontainer">
+		</div>
 		
 		<div id="maincontainer">
-			
 		</div>
 
     </body>

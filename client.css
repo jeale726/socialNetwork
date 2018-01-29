@@ -60,6 +60,10 @@ label{
 	color:red;
 }
 
+.center{
+	text-align: center;
+}
+
 
 /* Navigation styles -------------------- */
 ul {
