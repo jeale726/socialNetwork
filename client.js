@@ -6,9 +6,8 @@ displayview = function(){
    if(data.success){
 	   // if it exists, show the profile view
 	   document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
-	   document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
-	   // display home page
-	   displaypanel.profile();
+	   var idnavbar = localStorage.getItem("navbar");
+	   clicknavbutton(idnavbar);
    }else{
 	// else show the welcome view
 	document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
@@ -62,12 +61,14 @@ signup = function(){
 			document.getElementById("message").innerText=result.message;
 			 var username = document.getElementById("username");
 		}else{
+			
+			document.getElementById("browse").style.display = "none";
 			// shox the profile view and store the token into le local storage
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 			var signingin=serverstub.signIn(newProfile.email,newProfile.password);
 			localStorage.setItem("loggedinuser",signingin.data);
 			// display profile of the current user
-			displaypanel.profile();
+			displayprofile();
 		}
 	}
 	return false;
@@ -79,11 +80,12 @@ signin = function(){
 		//receive the token from the server and see if the user exist
 		var result =serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim());
 		if(result.success){
+			document.getElementById("browse").style.display = "none";
 			// if the user exist display his profile view and stor the token in the local storage
 			document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 			localStorage.setItem("loggedinuser",result.data);
-			displaypanel.profile();
+			displayprofile();
 		}
 		// else display an error message
 		message.innerText = result.message;
@@ -96,6 +98,7 @@ signout = function(){
 	localStorage.removeItem("loggedinuser");
 	document.getElementById("navcontainer").innerHTML= "";
 	document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
+	localStorage.setItem('navbar',"homenav");
 }
 
 validatePassForm = function() {
@@ -147,7 +150,7 @@ changePassword = function(){
 clicknavbutton = function(id){
 	var button_nav = document.getElementById(id);
 	var token = localStorage.getItem("loggedinuser");
-
+	localStorage.setItem("navbar",id);
 	if(!button_nav.classList.contains("active")){
 
 		var active_button = document.getElementsByClassName("active")[0];
@@ -160,54 +163,55 @@ clicknavbutton = function(id){
 		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 		//var changinin=serverstub.signIn(newProfile.email,newProfile.password);
 		//localStorage.setItem("loggedinuser",changinin.data);
+		
+		document.getElementById("browse").style.display = "none";
+		document.getElementById("home").style.display = "block";
 		// display profile of the current user
-		displaypanel.profile();
+		displayprofile();
+		
 	}
 	else if(id == "browsenav"){
-		//document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 		//var changinin=serverstub.signIn(newProfile.email,newProfile.password);
 		//localStorage.setItem("loggedinuser",changinin.data);
 		// display profile of the current user
 		//displaypanel.profile();
-		console.log("browse");
+		document.getElementById("browse").style.display = "block";
+		document.getElementById("home").style.display = "none";
 	}
 	else if(id == "accountnav"){
 
 		document.getElementById("maincontainer").innerHTML=document.getElementById("accountview").innerHTML;
 
-		
-		
 	}
 	else{
-		console.log("ERROR IN ELSE");
+		document.getElementById("maincontainer").innerHTML="Sorry, this address doesn't exit";
 	}
 	return false;
 }
 
-displaypanel = {
+// show the profile of a person depending on the token in parameter
+displayprofile = function(email=""){
 	
-	// show the profile of a person depending on the token in parameter
-	profile: function(email=""){
-		var token = localStorage.getItem("loggedinuser");
-		// get the data of the user from the server depending on his token
-		if(email==""){
-			var result= serverstub.getUserDataByToken(token);
-		}else{
-			var result= serverstub.getUserDataByEmail(token,email);
-		}
-		
-		if(result.success){
-			// display all the data of the user
-			document.getElementById("homeusername").innerText=result.data.firstname +" " + result.data.familyname;
-			document.getElementById("homegender").innerText=result.data.gender;
-			document.getElementById("homeemail").innerText=result.data.email;
-			document.getElementById("homecity").innerText=result.data.city;
-			document.getElementById("homecountry").innerText=result.data.country;
-		}
-		displaymessages();
+	var token = localStorage.getItem("loggedinuser");
+	// get the data of the user from the server depending on his token
+	if(email==""){
+		var result= serverstub.getUserDataByToken(token);
+	}else{
+		var result= serverstub.getUserDataByEmail(token,email);
 	}
 	
+	if(result.success){
+		// display all the data of the user
+		document.getElementById("homeusername").innerText=result.data.firstname +" " + result.data.familyname;
+		document.getElementById("homegender").innerText=result.data.gender;
+		document.getElementById("homeemail").innerText=result.data.email;
+		document.getElementById("homecity").innerText=result.data.city;
+		document.getElementById("homecountry").innerText=result.data.country;
+	}
+	displaymessages();
 }
+	
 // methode to post a message to a wall
 postmessage = function(){
 	var message = document.getElementById("postmessage").value.trim();
@@ -242,10 +246,12 @@ searchprofile = function(){
 	var result=serverstub.getUserMessagesByEmail(token,email);
 	if(result.success){// if the user exists
 		//show profile
-		displaypanel.profile(email);
+		displayprofile(email);
+		document.getElementById("home").style.display = "block";
 		document.getElementById("messageusername").innerText="";
 	}else{
 		document.getElementById("messageusername").innerText=serverstub.getUserMessagesByEmail(token,email).message;
+		document.getElementById("home").style.display = "none";
 	}
 }
 
