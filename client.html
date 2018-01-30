@@ -109,17 +109,19 @@
 				<div class="container">
 					<div id="changepass">
 						<h3> You can change your password here!</h3>
-						<form id="changepass-form" name="changepass-form" method="PUT" action="#"> <!--onsubmit="return signin()"> --> 
+						<form id="changepass-form" name="changepass-form" method="PUT" action="#" onsubmit="return changePassword()"> 
 							<div class="inner">
 								<div class="row"><label for="email" >Old Pass* </label><input class="welcomeinput" type="password" id="oldpass" required></input></div>
 								<div class="row"><label for="password" >New Pass* </label><input class="welcomeinput" type="password" id="newpass" required></input></div>
-								<div class="row"><label for="password" >Repeat New Pass* </label><input class="welcomeinput" type="password" id="repeatnewpass" required></input></div>
+								<div class="row"><label for="password" >Repeat New Pass* </label><input class="welcomeinput" type="repeatnewpass" id="repeatnewpass" required></input></div>
 								<!-- submit button for changepass-->
 								
 								<div class="center">
 									<button class="basicbutton" id="changepassbutton" type="submit">Change Password</button>
 
-									<div id="message">
+									<button class="basicbutton" id="logoutbutton" onclick="signout()">Log out</button>
+
+									<div id="messagePass">
 									</div>
 								</div>
 

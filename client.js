@@ -80,6 +80,7 @@ signin = function(){
 		var result =serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim());
 		if(result.success){
 			// if the user exist display his profile view and stor the token in the local storage
+			document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 			localStorage.setItem("loggedinuser",result.data);
 			displaypanel.profile();
@@ -89,15 +90,58 @@ signin = function(){
 		return false;
 }
 
-//validatePassForm = function(){
-
-//}
-
-signout = function(token){
-	//var token = localStorage.getItem("loggedinuser");
+signout = function(){
+	var token =localStorage.getItem("loggedinuser");
 	serverstub.signOut(token);
 	localStorage.removeItem("loggedinuser");
+	document.getElementById("navcontainer").innerHTML= "";
 	document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
+}
+
+validatePassForm = function() {
+
+	    var newpass = document.getElementById("newpass");
+	    var repeatnewpass= document.getElementById("repeatnewpass");
+
+	    var messagePass = document.getElementById("messagePass");
+	    var X = 6;
+
+	    // Passwords validation ----------------------------------
+	    if (newpass.value.trim() != repeatnewpass.value.trim()){
+	    	messagePass.innerText = "The new pass are NOT the same!";
+	    	newpass.focus();
+	    	return false;
+	    }
+	    else{
+	    	//messagePass.innerText = "The new pass are the same!";
+
+	    	// Characters long validation ----------------------------
+		    if(newpass.value.trim().length < X || repeatnewpass.value.trim().length < X){
+		    	messagePass.innerText = "The new pass are too short!";
+		    	return false;
+		    }
+	    	return true;
+	    }
+	};
+
+changePassword = function(){
+	var token = localStorage.getItem("loggedinuser");
+	var formData = document.forms["changepass-form"];
+	if(validatePassForm()){
+
+		var old_pass = formData.oldpass.value.trim();
+		var new_pass = formData.newpass.value.trim();
+
+		// try to sign up with this contact
+		var result = serverstub.changePassword(token, old_pass, new_pass);
+		// show an error message 
+		if(!result.success){
+			document.getElementById("messagePass").innerText=result.message;
+		}else{
+			messagePass.innerText = "The password is changed successfully!";
+		}
+	}
+	return false;
 }
 
 clicknavbutton = function(id){
@@ -131,32 +175,13 @@ clicknavbutton = function(id){
 
 		document.getElementById("maincontainer").innerHTML=document.getElementById("accountview").innerHTML;
 
-		var formData = document.forms["changepass-form"];
-		if(true){
-
-			var old_pass = formData.oldpass.value.trim();
-			var new_pass = formData.newpass.value.trim();
-
-			// try to sign up with this contact
-			var result = serverstub.changePassword(token, old_pass, new_pass);
-			// show an error message 
-			if(!result.success){
-				document.getElementById("messages").innerText=result.message;
-			}else{
-				//document.getElementById("maincontainer").innerHTML=document.getElementById("accountview").innerHTML;
-				//var changinin=serverstub.changePassword(newProfile.email,newProfile.password);
-				//localStorage.setItem("loggedinuser",changinin.data);
-				// display profile of the current user
-				//displaypanel.profile();
-				console.log("else");
-			}
-		}
-		else if(id == "logoutnav"){
-			signout(token);
-		}
-		return false;
+		
+		
 	}
-
+	else{
+		console.log("ERROR IN ELSE");
+	}
+	return false;
 }
 
 displaypanel = {
