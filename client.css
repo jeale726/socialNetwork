@@ -145,10 +145,15 @@ li a:hover:not(.active) {
 	display:block;
 }
 
+
 #messages{
-	margin-left:20%;
+	
 	margin-top:20px;
+	margin-left:20%;
+	margin-right:20%;
+	
 }
+
 .postername{
 	font-style:oblique;
 	
@@ -156,6 +161,21 @@ li a:hover:not(.active) {
 .postermessage{
 	font-size:25px;
 	margin-bottom:15px;
+	overflow: auto;
+}
+
+.posternameothers{
+	text-align:right;
+	font-style:oblique;
+	color:#800000;
+	
+}
+.postermessageothers{
+	font-size:25px;
+	margin-bottom:15px;
+	color:#800000;
+	text-align:right;
+	overflow: auto;
 }
 
 /* Browse style ------------------*/

@@ -230,10 +230,19 @@ displaymessages= function(){
 	var email = document.getElementById("homeemail").innerText;
 	var token = localStorage.getItem("loggedinuser");
 	var messages = serverstub.getUserMessagesByEmail(token,email);
+	var currentuseremail = serverstub.getUserDataByToken(token).data.email;
 	var result=""
 	for (var i=0; i<messages.data.length;i++){
-		result+="<div class='postername'>"+messages.data[i].writer+"</div>";
-		result+="<div class='postermessage'>"+messages.data[i].content+" </div>";
+		//show messages and change style depending if the email is the current user's email
+		if(messages.data[i].writer==currentuseremail){
+			result+="<div class='postername'>"+messages.data[i].writer+"</div>";
+			result+="<div class='postermessage'>"+messages.data[i].content+" </div>";
+		}
+		else{
+			result+="<div class='posternameothers'>"+messages.data[i].writer+"</div>";
+			result+="<div class='postermessageothers'>"+messages.data[i].content+" </div>";
+		}
+		
 	}
 	document.getElementById("messages").innerHTML=result;
 	
