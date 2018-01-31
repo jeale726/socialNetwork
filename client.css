@@ -67,6 +67,7 @@ h3{
     float: right;
     height: 19px;
     margin-right: 10px;
+		border:2px;
 }
 
 /*
@@ -217,16 +218,16 @@ li a:hover:not(.active) {
 
 
 #messages{
-	
+
 	margin-top:20px;
 	margin-left:20%;
 	margin-right:20%;
-	
+
 }
 
 .postername{
 	font-style:oblique;
-	
+
 }
 .postermessage{
 	font-size:25px;
@@ -238,7 +239,7 @@ li a:hover:not(.active) {
 	text-align:right;
 	font-style:oblique;
 	color:#800000;
-	
+
 }
 .postermessageothers{
 	font-size:25px;
