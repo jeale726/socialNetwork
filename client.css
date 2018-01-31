@@ -194,3 +194,31 @@ img#searchicon{
 	border-radius: 25px;
 	margin-left:25%;
 }
+
+#browse{
+	display: none;
+}
+
+/* Account style ---------------- */
+
+#title{
+	text-align: center;
+}
+
+.form_input_text{
+	font-size: 20px;
+}
+
+.add_top_margin{
+	margin-top: 30px;
+}
+
+.black_button{
+	background-color: black;
+    border: none;
+    color: white;
+    padding: 16px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}

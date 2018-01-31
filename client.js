@@ -14,15 +14,17 @@ displayview = function(){
    }
 };
 
+// Function that validates the form
 validateForm = function() {
 
+		// Passwords inputs and message to display
 	    var password = document.getElementById("passwordsignup");
 	    var repeatPassword = document.getElementById("repeatpassword");
 
 	    var message = document.getElementById("message");
 	    var X = 6;
 
-	    // Passwords validation ----------------------------------
+	    // Passwords validation, if both are the same ---------------------------
 	    if (password.value.trim() != repeatPassword.value.trim()){
 	    	message.innerText = "Passwords are NOT the same!";
 	    	password.focus();
@@ -31,7 +33,7 @@ validateForm = function() {
 	    else{
 	    	message.innerText = "Passwords are the same!";
 
-	    	// Characters long validation ----------------------------
+	    	// Characters long validation, if both passwords are longer than certain value ---------
 		    if(password.value.trim().length < X || repeatPassword.value.trim().length < X){
 		    	message.innerText = "Passwords are too short!";
 		    	return false;
@@ -62,8 +64,9 @@ signup = function(){
 			 var username = document.getElementById("username");
 		}else{
 			
-			document.getElementById("browse").style.display = "none";
+			//document.getElementById("browse").style.display = "none";
 			// shox the profile view and store the token into le local storage
+			document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 			var signingin=serverstub.signIn(newProfile.email,newProfile.password);
 			localStorage.setItem("loggedinuser",signingin.data);
@@ -80,7 +83,7 @@ signin = function(){
 		//receive the token from the server and see if the user exist
 		var result =serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim());
 		if(result.success){
-			document.getElementById("browse").style.display = "none";
+			//document.getElementById("browse").style.display = "none"; PROBLEM HERE!!!
 			// if the user exist display his profile view and stor the token in the local storage
 			document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
@@ -92,6 +95,7 @@ signin = function(){
 		return false;
 }
 
+//Sign-out function called when the user wants to signout from the system
 signout = function(){
 	var token =localStorage.getItem("loggedinuser");
 	serverstub.signOut(token);
@@ -101,8 +105,10 @@ signout = function(){
 	localStorage.setItem('navbar',"homenav");
 }
 
+//Function to validate the forms in account view
 validatePassForm = function() {
 
+		// Passwords inputs and message to display
 	    var newpass = document.getElementById("newpass");
 	    var repeatnewpass= document.getElementById("repeatnewpass");
 
@@ -116,7 +122,6 @@ validatePassForm = function() {
 	    	return false;
 	    }
 	    else{
-	    	//messagePass.innerText = "The new pass are the same!";
 
 	    	// Characters long validation ----------------------------
 		    if(newpass.value.trim().length < X || repeatnewpass.value.trim().length < X){
@@ -127,9 +132,11 @@ validatePassForm = function() {
 	    }
 	};
 
+//Function that triggers the password change
 changePassword = function(){
 	var token = localStorage.getItem("loggedinuser");
 	var formData = document.forms["changepass-form"];
+
 	if(validatePassForm()){
 
 		var old_pass = formData.oldpass.value.trim();
@@ -141,16 +148,21 @@ changePassword = function(){
 		if(!result.success){
 			document.getElementById("messagePass").innerText=result.message;
 		}else{
-			messagePass.innerText = "The password is changed successfully!";
+			messagePass.innerText = "The password was changed successfully!";
 		}
 	}
 	return false;
 }
 
+//Function that triggers different behaviors depending which button is clicked from the tab
 clicknavbutton = function(id){
+
+	// Variables
 	var button_nav = document.getElementById(id);
 	var token = localStorage.getItem("loggedinuser");
 	localStorage.setItem("navbar",id);
+
+	// To change the active section of the bar
 	if(!button_nav.classList.contains("active")){
 
 		var active_button = document.getElementsByClassName("active")[0];
@@ -159,42 +171,38 @@ clicknavbutton = function(id){
 		button_nav.classList.add("active");
 	}
 
-	if(id == "homenav"){
+	if(id == "homenav"){ // If the home button is active
 		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
-		//var changinin=serverstub.signIn(newProfile.email,newProfile.password);
-		//localStorage.setItem("loggedinuser",changinin.data);
 		
-		document.getElementById("browse").style.display = "none";
-		document.getElementById("home").style.display = "block";
+		//document.getElementById("browse").style.display = "none";
+		//document.getElementById("home").style.display = "block";
 		// display profile of the current user
 		displayprofile();
-		
 	}
-	else if(id == "browsenav"){
+	else if(id == "browsenav"){ // If the browse button is active
 		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
-		//var changinin=serverstub.signIn(newProfile.email,newProfile.password);
-		//localStorage.setItem("loggedinuser",changinin.data);
+
 		// display profile of the current user
 		//displaypanel.profile();
 		document.getElementById("browse").style.display = "block";
 		document.getElementById("home").style.display = "none";
 	}
-	else if(id == "accountnav"){
+	else if(id == "accountnav"){ // If the account button is active
 
 		document.getElementById("maincontainer").innerHTML=document.getElementById("accountview").innerHTML;
 
 	}
-	else{
+	else{ // Error
 		document.getElementById("maincontainer").innerHTML="Sorry, this address doesn't exit";
 	}
 	return false;
 }
 
-// show the profile of a person depending on the token in parameter
+// Show the profile of a person depending on the token in parameter
 displayprofile = function(email=""){
 	
 	var token = localStorage.getItem("loggedinuser");
-	// get the data of the user from the server depending on his token
+	// Get the data of the user from the server depending on his token
 	if(email==""){
 		var result= serverstub.getUserDataByToken(token);
 	}else{
@@ -230,6 +238,7 @@ displaymessages= function(){
 	var email = document.getElementById("homeemail").innerText;
 	var token = localStorage.getItem("loggedinuser");
 	var messages = serverstub.getUserMessagesByEmail(token,email);
+
 	var currentuseremail = serverstub.getUserDataByToken(token).data.email;
 	var result=""
 	for (var i=0; i<messages.data.length;i++){
@@ -264,25 +273,10 @@ searchprofile = function(){
 	}
 }
 
+// Main function
 window.onload = function(){
 	
 	displayview();
-	
-	/*
-    $('#login-btn').on("click",function(){
-
-		var div_id = (parseInt($(this).attr("id"))).toString();
-		var clase = $(this).attr("class");
-		var opt;
-
-		if(clase == "grid-item con-sombrita cont"){
-			opt = select1.find('option[value="'+ div_id +'"]');
-		}
-		else{
-			opt = select2.find('option[value="'+ div_id +'"]');
-		}
-	});
-	*/
 
 }
 
