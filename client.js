@@ -1,18 +1,18 @@
 
-
+// display the welcome view if the user wasn't login before or the latest visited view if he was
 displayview = function(){
 	//get the token in the local storage
    var token =localStorage.getItem("loggedinuser");
    var data =serverstub.getUserDataByToken(token);
    // check if this token exists in our server
    if(data.success){
-	   // if it exists, show the profile view
+	   // if it exists, show the latest visited view
 	   document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
 	   var idnavbar = localStorage.getItem("navbar");
 	   clicknavbutton(idnavbar);
    }else{
 	// else show the welcome view
-	document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
+	   document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
    }
 };
 
@@ -60,18 +60,16 @@ signup = function(){
 		};
 		// try to sign up with this contact
 		var result = serverstub.signUp(newProfile);
-		// show an error message 
+
 		if(!result.success){
+      	// if there is an error show the error message sent by the server
 			document.getElementById("message").innerText=result.message;
 			 var username = document.getElementById("username");
 		}else{
-			
-			//document.getElementById("browse").style.display = "none";
-			// shox the profile view and store the token into le local storage
+
+			// show the profile view and store the token into the local storage
 			document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
-			var signingin=serverstub.signIn(newProfile.email,newProfile.password);
-			localStorage.setItem("loggedinuser",signingin.data);
 			// display profile of the current user
 			displayprofile();
 		}
@@ -84,28 +82,33 @@ signin = function(){
 		var formData = document.forms["login-form"];
 		var message = document.getElementById("message");
 		//receive the token from the server and see if the user exist
-		var result =serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim());
+		var result = serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim());
 		if(result.success){
-			//document.getElementById("browse").style.display = "none"; PROBLEM HERE!!!
-			// if the user exist display his profile view and stor the token in the local storage
-			document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
-			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
+
+			// if the user exist display his profile view and store the token in the local storage
+			document.getElementById("navcontainer").innerHTML = document.getElementById("navview").innerHTML;
+			document.getElementById("maincontainer").innerHTML = document.getElementById("profileview").innerHTML;
 			localStorage.setItem("loggedinuser",result.data);
 			displayprofile();
+		}else {
+      // else display an error message
+  		message.innerText = result.message;
 		}
-		// else display an error message
-		message.innerText = result.message;
 		return false;
 }
 
 //Sign-out function called when the user wants to signout from the system
 signout = function(){
+  // get the token of the user in the local Storage
 	var token =localStorage.getItem("loggedinuser");
 	serverstub.signOut(token);
+  // remove the token from the local Storage
 	localStorage.removeItem("loggedinuser");
+  //delete the navbar and put the welcome view in the main container
 	document.getElementById("navcontainer").innerHTML= "";
 	document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
-	localStorage.setItem('navbar',"homenav");
+  // set homenav by default in the navbar
+  localStorage.setItem('navbar',"homenav");
 }
 
 //Function to validate the forms in account view
@@ -141,13 +144,12 @@ changePassword = function(){
 	var formData = document.forms["changepass-form"];
 
 	if(validatePassForm()){
-
 		var old_pass = formData.oldpass.value.trim();
 		var new_pass = formData.newpass.value.trim();
 
 		// try to sign up with this contact
 		var result = serverstub.changePassword(token, old_pass, new_pass);
-		// show an error message 
+		// show an error message
 		if(!result.success){
 			document.getElementById("messagePass").innerText=result.message;
 		}else{
@@ -170,13 +172,12 @@ clicknavbutton = function(id){
 
 		var active_button = document.getElementsByClassName("active")[0];
 		active_button.classList.remove("active");
-
 		button_nav.classList.add("active");
 	}
 
 	if(id == "homenav"){ // If the home button is active
 		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
-		
+
 		// display profile of the current user
 		displayprofile();
 	}
@@ -201,7 +202,7 @@ clicknavbutton = function(id){
 
 // Show the profile of a person depending on the token in parameter
 displayprofile = function(email=""){
-	
+
 	var token = localStorage.getItem("loggedinuser");
 	// Get the data of the user from the server depending on his token
 	if(email==""){
@@ -209,7 +210,7 @@ displayprofile = function(email=""){
 	}else{
 		var result= serverstub.getUserDataByEmail(token,email);
 	}
-	
+
 	if(result.success){
 		// display all the data of the user
 		document.getElementById("homeusername").innerText=result.data.firstname +" " + result.data.familyname;
@@ -220,7 +221,7 @@ displayprofile = function(email=""){
 	}
 	displaymessages();
 }
-	
+
 // methode to post a message to a wall
 postmessage = function(){
 	var message = document.getElementById("postmessage").value.trim();
@@ -236,15 +237,21 @@ postmessage = function(){
 
 /*display messages of all the current profile -- also called to refresh a page*/
 displaymessages= function(){
+  //get the email of the profile displayed
 	var email = document.getElementById("homeemail").innerText;
+
+  // get the token of the current user
 	var token = localStorage.getItem("loggedinuser");
+  // get the messages of the displayed profile
 	var messages = serverstub.getUserMessagesByEmail(token,email);
 
+  // get the email of the current user with his token
 	var currentuseremail = serverstub.getUserDataByToken(token).data.email;
+
 	document.getElementById("messages").innerHTML="";
 	var result=document.getElementById("messages");
 	for (var i=0; i<messages.data.length;i++){
-		
+
 		//show messages and change style depending if the email is the current user's email
 		if(messages.data[i].writer==currentuseremail){
 			result.innerHTML+="<div class='postername'><span id='postername"+i+"'></span></div><div class='postermessage'><span id='postermessage"+i+"'></span></div>";
@@ -252,11 +259,12 @@ displaymessages= function(){
 		else{
 			result.innerHTML+="<div class='posternameothers'><span id='postername"+i+"'></span></div><div class='postermessageothers'><span id='postermessage"+i+"'></span></div>";
 		}
+    // affect to all this label messages and username of the poster
 		document.getElementById("postername"+i).innerText=messages.data[i].writer;
 		document.getElementById("postermessage"+i).innerText=messages.data[i].content;
-		
+
 	}
-	
+
 }
 
 // find the profile with the username given by the input
@@ -270,15 +278,15 @@ searchprofile = function(){
 		document.getElementById("home").style.display = "block";
 		document.getElementById("messageusername").innerText="";
 	}else{
+    // else show the error message from the server and hide the profile view
 		document.getElementById("messageusername").innerText=serverstub.getUserMessagesByEmail(token,email).message;
 		document.getElementById("home").style.display = "none";
 	}
 }
 
-// Main function
+// Main function - Called when the page is loading
 window.onload = function(){
-	
-	displayview();
-	
-}
 
+	displayview();
+
+}

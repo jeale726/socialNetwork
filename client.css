@@ -77,14 +77,21 @@ h3{
 	margin: 0 0 1 150;
 }
 */
-
-.welcomebutton {
-    height: 25px;
-    width: 75px;
-    margin-left: 15px;
-    margin-top: 5px;
+/*
+.welcomeinput{
+    width: 100px;
+	text-align:center;
+	float:right;
+	height:25px;
 }
-
+/*
+.welcomeinput{
+    width: 100px;
+	text-align:center;
+	float:right;
+	height:25px;
+}
+*/
 
 /*
 #gender{
