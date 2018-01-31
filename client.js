@@ -267,7 +267,7 @@ displaymessages= function(){
 
 }
 
-// find the profile with the username given by the input
+// find the profile with the username given by the input  
 searchprofile = function(){
 	var email = document.getElementById("search").value.trim();
 	var token = localStorage.getItem("loggedinuser");
