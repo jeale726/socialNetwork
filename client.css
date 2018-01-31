@@ -1,6 +1,12 @@
 body{
 	margin: 0px;
 	background-color:#1da1f2;
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	height: 100%;
 }
 .container{
 	margin-left: auto;
@@ -24,6 +30,7 @@ h3{
 }
 #signup{
 	background-color:white;
+	/*height: 274px;*/
 }
 #login{
 	background-color:white;
