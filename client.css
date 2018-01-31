@@ -14,7 +14,6 @@ body{
 	width:600px;
 	margin-top:100px;
 }
-
 #left-side{
 	float:left;
 	margin-right:10px;
@@ -33,67 +32,30 @@ h3{
 	background-color:white;
 	height: 273px;
 }
-/*
-#login{
-	background-color:white;
-	margin-bottom:10px;
-	vertical-align:bottom;
-}
-*/
-
 #login {
     background-color: white;
     margin-bottom: 7px;
     vertical-align: bottom;
     height: 120px;
 }
-
 .row{
 	height:25px;
 	padding :0 10 0 10;
 }
-/*
-.welcomeinput{
-    width: 100px;
-	text-align:center;
-	float:right;
-	height:25px;
-}
-*/
-
 .welcomeinput {
     width: 100px;
     text-align: center;
     float: right;
     height: 19px;
     margin-right: 10px;
-		border:2px;
+	border-width: 2px;
 }
-
-/*
-.welcomebutton{
-	height: 25px;
-    width: 75px;
-	margin: 0 0 1 150;
-}
-*/
-
 .welcomebutton {
     height: 25px;
     width: 75px;
     margin-left: 15px;
     margin-top: 5px;
 }
-
-
-/*
-#gender{
-	width: 100px;
-	float:right;
-	 box-sizing: border-box;
-	 height:22px;
-}
-*/
 
 #gender {
     width: 104px;
@@ -102,13 +64,6 @@ h3{
     height: 25px;
     margin-right: 10px;
 }
-
-/*
-label{
-	margin-bottom: 0px;
-	float: left;
-}
-*/
 
 label {
     margin-bottom: 0px;
@@ -123,17 +78,12 @@ label {
     margin-top: 0px;
     margin-left: 15px;
 }
-
-
-
 #message{
 	color:red;
 }
-
 .center{
 	text-align: center;
 }
-
 
 /* Navigation styles -------------------- */
 ul {
@@ -143,11 +93,9 @@ ul {
     overflow: hidden;
     background-color: black;
 }
-
 li {
     float: left;
 }
-
 li a {
     display: block;
     color: white;
@@ -189,7 +137,7 @@ li a:hover:not(.active) {
 	margin-top:100px;
 }
 
-/* wall part*/
+/* wall part -------------------*/
 
 .inputprofile{
 	background-color: white;
@@ -198,7 +146,7 @@ li a:hover:not(.active) {
 	margin-left:20%;
 }
 .basicbutton{
-	 background-color: red;
+	background-color: red;
     border: none;
     color: white;
     padding: 16px 16px;
@@ -215,16 +163,11 @@ li a:hover:not(.active) {
 	display:block;
 	margin-top: 90px;
 }
-
-
 #messages{
-
 	margin-top:20px;
 	margin-left:20%;
 	margin-right:20%;
-
 }
-
 .postername{
 	font-style:oblique;
 
@@ -234,7 +177,6 @@ li a:hover:not(.active) {
 	margin-bottom:15px;
 	overflow: auto;
 }
-
 .posternameothers{
 	text-align:right;
 	font-style:oblique;
@@ -249,9 +191,7 @@ li a:hover:not(.active) {
 	overflow: auto;
 }
 
-
 /* Browse style ------------------*/
-
 
 #messageusername{
 	color:red;
@@ -266,7 +206,6 @@ img#searchicon{
 	border-radius: 25px;
 	margin-left:25%;
 }
-
 #browse{
 	display: none;
 	margin-top:30px;
@@ -277,15 +216,12 @@ img#searchicon{
 #title{
 	text-align: center;
 }
-
 .form_input_text{
 	font-size: 20px;
 }
-
 .add_top_margin{
 	margin-top: 30px;
 }
-
 .black_button{
 	background-color: black;
     border: none;
