@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en"> 
     <head>
     	<meta charset="utf-8"/>
@@ -29,7 +29,7 @@
 					<!-- Signup -->
 					<div id="signup">
 						<h3> Sign up here !</h3>
-						<form id="sign-up-form" name ="sign-up-form"  method="PUT" action="#" onsubmit="signup()">
+						<form id="sign-up-form" name ="sign-up-form"  method="PUT" action="#" onsubmit="return signup()">
 							<div class="inner">
 								<div class="row"><label for="firstname">First name* </label><input class="welcomeinput" type="text" id="firstname" name="firstname" required></div>
 								<div class="row"><label for="familyname" >Family name* </label><input class="welcomeinput" type="text" id="familyname" name="familyname" required></div>
@@ -59,9 +59,9 @@
 		<!-- Navbar View -->
 		<script id="navview" type="text/view">
 			<ul>
-			  <li><a id="homenav" class="active" href="#home" onclick="clicknavbutton(this.id)">Home</a></li>
-			  <li><a id="browsenav" href="#browse" onclick="clicknavbutton(this.id)">Browse</a></li>
-			  <li><a id="accountnav" href="#account" onclick="clicknavbutton(this.id)">Account</a></li>
+			  <li><a id="homenav" class="active" href="" onclick="clicknavbutton(this.id)">Home</a></li>
+			  <li><a id="browsenav" href="" onclick="clicknavbutton(this.id)">Browse</a></li>
+			  <li><a id="accountnav" href="" onclick="clicknavbutton(this.id)">Account</a></li>
 			</ul>
 		</script>
 	
@@ -103,16 +103,15 @@
 		<!-- Account View -->
 		<script id="accountview" type="text/view">
 		
-			<!-- homeView with profile and wall-->
 			<div id="account">
 				<div class="container">
 					<div id="changepass">
 						<h2 id="title"> You can change your password here!</h2>
 						<form id="changepass-form" name="changepass-form" method="PUT" action="#" onsubmit="return changePassword()"> 
 							<div class="inner add_top_margin">
-								<div class="row"><label class="form_input_text" for="email" >Old Pass* </label><input class="welcomeinput" type="password" id="oldpass" required></div>
-								<div class="row"><label class="form_input_text" for="password" >New Pass* </label><input class="welcomeinput" type="password" id="newpass" required></div>
-								<div class="row"><label class="form_input_text" for="password" >Repeat New Pass* </label><input class="welcomeinput" type="password" id="repeatnewpass" required></div>
+								<div class="row"><label class="form_input_text label_pass" for="email" >Old Pass* </label><input class="welcomeinput" type="password" id="oldpass" required></div>
+								<div class="row"><label class="form_input_text label_pass" for="password" >New Pass* </label><input class="welcomeinput" type="password" id="newpass" required></div>
+								<div class="row"><label class="form_input_text label_pass" for="password" >Repeat New Pass* </label><input class="welcomeinput" type="password" id="repeatnewpass" required></div>
 								<!-- submit button for changepass-->
 								
 								<div class="center">

@@ -22,6 +22,7 @@ body{
 h3{
 	text-align:center;
 	margin-top:inherit;
+	margin-bottom: 15px;
 }
 #right-side{
 	float:right;
@@ -30,39 +31,100 @@ h3{
 }
 #signup{
 	background-color:white;
-	/*height: 274px;*/
+	height: 273px;
 }
+/*
 #login{
 	background-color:white;
 	margin-bottom:10px;
 	vertical-align:bottom;
+}
+*/
+
+#login {
+    background-color: white;
+    margin-bottom: 7px;
+    vertical-align: bottom;
+    height: 120px;
 }
 
 .row{
 	height:25px;
 	padding :0 10 0 10;
 }
+/*
 .welcomeinput{
     width: 100px;
 	text-align:center;
 	float:right;
 	height:25px;
 }
+*/
+
+.welcomeinput {
+    width: 100px;
+    text-align: center;
+    float: right;
+    height: 19px;
+    margin-right: 10px;
+}
+
+/*
 .welcomebutton{
 	height: 25px;
     width: 75px;
 	margin: 0 0 1 150;
 }
+*/
+
+.welcomebutton {
+    height: 25px;
+    width: 75px;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+
+/*
 #gender{
 	width: 100px;
 	float:right;
 	 box-sizing: border-box;
 	 height:22px;
 }
+*/
+
+#gender {
+    width: 104px;
+    float: right;
+    box-sizing: border-box;
+    height: 25px;
+    margin-right: 10px;
+}
+
+/*
 label{
 	margin-bottom: 0px;
 	float: left;
 }
+*/
+
+label {
+    margin-bottom: 0px;
+    float: left;
+    margin-top: 5.5px;
+    margin-left: 15px;
+}
+
+.label_pass{
+	margin-bottom: 0px;
+    float: left;
+    margin-top: 0px;
+    margin-left: 15px;
+}
+
+
+
 #message{
 	color:red;
 }
@@ -150,6 +212,7 @@ li a:hover:not(.active) {
 
 #home{
 	display:block;
+	margin-top: 90px;
 }
 
 

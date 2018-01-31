@@ -1,3 +1,5 @@
+
+
 displayview = function(){
 	//get the token in the local storage
    var token =localStorage.getItem("loggedinuser");
@@ -80,6 +82,7 @@ signup = function(){
 //Sign-in function called when the user submit the form to login
 signin = function(){
 		var formData = document.forms["login-form"];
+		var message = document.getElementById("message");
 		//receive the token from the server and see if the user exist
 		var result =serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim());
 		if(result.success){
@@ -276,6 +279,6 @@ searchprofile = function(){
 window.onload = function(){
 	
 	displayview();
-
+	
 }
 
