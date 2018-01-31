@@ -174,8 +174,6 @@ clicknavbutton = function(id){
 	if(id == "homenav"){ // If the home button is active
 		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 		
-		//document.getElementById("browse").style.display = "none";
-		//document.getElementById("home").style.display = "block";
 		// display profile of the current user
 		displayprofile();
 	}
@@ -240,20 +238,21 @@ displaymessages= function(){
 	var messages = serverstub.getUserMessagesByEmail(token,email);
 
 	var currentuseremail = serverstub.getUserDataByToken(token).data.email;
-	var result=""
+	document.getElementById("messages").innerHTML="";
+	var result=document.getElementById("messages");
 	for (var i=0; i<messages.data.length;i++){
+		
 		//show messages and change style depending if the email is the current user's email
 		if(messages.data[i].writer==currentuseremail){
-			result+="<div class='postername'>"+messages.data[i].writer+"</div>";
-			result+="<div class='postermessage'>"+messages.data[i].content+" </div>";
+			result.innerHTML+="<div class='postername'><span id='postername"+i+"'></span></div><div class='postermessage'><span id='postermessage"+i+"'></span></div>";
 		}
 		else{
-			result+="<div class='posternameothers'>"+messages.data[i].writer+"</div>";
-			result+="<div class='postermessageothers'>"+messages.data[i].content+" </div>";
+			result.innerHTML+="<div class='posternameothers'><span id='postername"+i+"'></span></div><div class='postermessageothers'><span id='postermessage"+i+"'></span></div>";
 		}
+		document.getElementById("postername"+i).innerText=messages.data[i].writer;
+		document.getElementById("postermessage"+i).innerText=messages.data[i].content;
 		
 	}
-	document.getElementById("messages").innerHTML=result;
 	
 }
 
