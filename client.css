@@ -33,13 +33,7 @@ h3{
 	background-color:white;
 	height: 273px;
 }
-/*
-#login{
-	background-color:white;
-	margin-bottom:10px;
-	vertical-align:bottom;
-}
-*/
+
 
 #login {
     background-color: white;
@@ -52,14 +46,7 @@ h3{
 	height:25px;
 	padding :0 10 0 10;
 }
-/*
-.welcomeinput{
-    width: 100px;
-	text-align:center;
-	float:right;
-	height:25px;
-}
-*/
+
 
 .welcomeinput {
     width: 100px;
@@ -70,14 +57,6 @@ h3{
 	border-width: 2px;
 }
 
-/*
-.welcomebutton{
-	height: 25px;
-    width: 75px;
-	margin: 0 0 1 150;
-}
-*/
-
 .welcomebutton {
     height: 25px;
     width: 75px;
@@ -85,15 +64,6 @@ h3{
     margin-top: 5px;
 }
 
-
-/*
-#gender{
-	width: 100px;
-	float:right;
-	 box-sizing: border-box;
-	 height:22px;
-}
-*/
 
 #gender {
     width: 104px;
@@ -103,12 +73,6 @@ h3{
     margin-right: 10px;
 }
 
-/*
-label{
-	margin-bottom: 0px;
-	float: left;
-}
-*/
 
 label {
     margin-bottom: 0px;
@@ -259,8 +223,9 @@ li a:hover:not(.active) {
 }
 img#searchicon{
 	height:20px;
+	padding-top:30px;
 	cursor:pointer;
-	margin-left:-30px;
+	margin-left:-40px;
 }
 #search{
 	border-radius: 25px;
