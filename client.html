@@ -42,9 +42,9 @@
 								</div>
 								<div class="row"><label for="city" >City* </label><input class="welcomeinput" type="text" id="city" name="city" required></div>
 								<div class="row"><label for="country" >Country* </label><input class="welcomeinput" type="text" id="country" name="country" required></div>
-								<div class="row"><label for="email">Email* </label><input class="welcomeinput" type="email" id="emailsignup" name="emailsignup" required></div>
-								<div class="row"><label for="password" >Password* </label><input class="welcomeinput" type="password" id="passwordsignup" name="passwordsignup" required></div>
-								<div class="row"><label for="repeatpassword" >Repeat pwd* </label><input class="welcomeinput" type="password" id="repeatpassword" name="repeatpassword" required></div>
+								<div class="row"><label for="email">Email* </label><input class="welcomeinput" type="email" id="emailsignup" name="emailsignup" oninput="return clearcustomvalidity(this)"required></div>
+								<div class="row"><label for="password" >Password* </label><input class="welcomeinput" type="password" id="passwordsignup" name="passwordsignup" oninput="return clearcustomvalidity(this)" required></div>
+								<div class="row"><label for="repeatpassword" >Repeat pwd* </label><input class="welcomeinput" type="password" id="repeatpassword" name="repeatpassword" oninput="return clearcustomvalidity(this)" required></div>
 								<!-- submit button for sign up-->
 								<button class="welcomebutton" type="submit">Sign up</button>
 							</div>

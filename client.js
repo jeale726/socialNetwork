@@ -23,25 +23,22 @@ validateForm = function() {
 	    var password = document.getElementById("passwordsignup");
 	    var repeatPassword = document.getElementById("repeatpassword");
 
-	    var message = document.getElementById("message");
 	    var X = 6;
 
 	    // Passwords validation, if both are the same ---------------------------
 	    if (password.value.trim() != repeatPassword.value.trim()){
-	    	message.innerText = "Passwords are NOT the same!";
+			repeatPassword.setCustomValidity("Password are not the same!");
 	    	password.focus();
 	    	return false;
 	    }
-	    else{
-	    	message.innerText = "Passwords are the same!";
-
-	    	// Characters long validation, if both passwords are longer than certain value ---------
-		    if(password.value.trim().length < X || repeatPassword.value.trim().length < X){
-		    	message.innerText = "Passwords are too short!";
-		    	return false;
-		    }
-	    	return true;
-	    }
+		// Characters long validation, if both passwords are longer than certain value ---------
+	    else if(password.value.trim().length < X || repeatPassword.value.trim().length < X){
+			password.setCustomValidity("Password is too short!");
+			return false;
+		}else{
+			return true;
+		}
+	    
 	};
 
 //Sign-up function called when the user submit the form to sign up
@@ -62,12 +59,10 @@ signup = function(){
 		var result = serverstub.signUp(newProfile);
 		// show an error message 
 		if(!result.success){
-			document.getElementById("message").innerText=result.message;
-			 var username = document.getElementById("username");
+			 var email= document.getElementById("emailsignup");
+			email.setCustomValidity("This email address already exists!");
 		}else{
-			
-			//document.getElementById("browse").style.display = "none";
-			// shox the profile view and store the token into le local storage
+			// show the profile view and store the token into the local storage
 			document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 			var signingin=serverstub.signIn(newProfile.email,newProfile.password);
@@ -86,7 +81,6 @@ signin = function(){
 		//receive the token from the server and see if the user exist
 		var result =serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim());
 		if(result.success){
-			//document.getElementById("browse").style.display = "none"; PROBLEM HERE!!!
 			// if the user exist display his profile view and stor the token in the local storage
 			document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
@@ -96,6 +90,12 @@ signin = function(){
 		// else display an error message
 		message.innerText = result.message;
 		return false;
+}
+
+// Clear custom validity form when the user is written in the field
+clearcustomvalidity = function(field){
+	field.setCustomValidity("")
+	
 }
 
 //Sign-out function called when the user wants to signout from the system
