@@ -28,15 +28,14 @@ h3{
 	float:right;
 	width:250px;
 	height:400px;
+	background-color: white;
 }
 #signup{
-	background-color:white;
 	height: 273px;
 }
 
 
 #login {
-    background-color: white;
     margin-bottom: 7px;
     vertical-align: bottom;
     height: 120px;
@@ -44,7 +43,7 @@ h3{
 
 .row{
 	height:25px;
-	padding :0 10 0 10;
+	padding :0px 10px 0px 10px;
 }
 
 
@@ -126,7 +125,7 @@ li a:hover:not(.active) {
 
 /* profile part*/
 #profile{
-	margin-top:50;
+	margin-top:50px;
 	margin-left:30%;
 }
 
@@ -151,7 +150,6 @@ li a:hover:not(.active) {
 /* wall part*/
 
 .inputprofile{
-	background-color: white;
 	padding: 10px 25px;
 	width:40%;
 	margin-left:20%;
@@ -211,11 +209,6 @@ li a:hover:not(.active) {
 
 /* Browse style ------------------*/
 
-
-#messageusername{
-	color:red;
-	margin-left:30%;
-}
 img#searchicon{
 	height:20px;
 	padding-top:30px;
