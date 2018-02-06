@@ -180,7 +180,6 @@ clicknavbutton = function(id){
 
 	if(id == "homenav"){ // If the home button is active
 		document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
-		
 		// display profile of the current user
 		displayprofile();
 	}
@@ -274,7 +273,11 @@ searchprofile = function(){
 		document.getElementById("home").style.display = "block";
 		document.getElementById("messageusername").innerText="";
 	}else{
-		document.getElementById("messageusername").innerText=serverstub.getUserMessagesByEmail(token,email).message;
+		
+		var message =serverstub.getUserMessagesByEmail(token,email).message;
+		var emailId=document.getElementById("search");
+		emailId.setCustomValidity(message);
+		emailId.reportValidity();
 		document.getElementById("home").style.display = "none";
 	}
 }

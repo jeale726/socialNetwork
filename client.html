@@ -71,7 +71,7 @@
 			<!-- search bar to find other profile-->
 			<div id="browse">
 			
-				<input type="text" class="inputprofile" id="search" name="searchbar" placeholder="Search for an address here" >
+				<input type="text" class="inputprofile" id="search" name="searchbar" placeholder="Search for an address here" oninput="return clearcustomvalidity(this)" >
 				<img id="searchicon" src="searchicon.png" alt="searchicon" onclick="searchprofile()" ></img>
 				<div id="messageusername" ></div>
 			</div>
