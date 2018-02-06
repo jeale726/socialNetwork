@@ -61,6 +61,7 @@ signup = function(){
 		if(!result.success){
 			 var email= document.getElementById("emailsignup");
 			email.setCustomValidity("This email address already exists!");
+			
 		}else{
 			// show the profile view and store the token into the local storage
 			document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
@@ -71,6 +72,7 @@ signup = function(){
 			displayprofile();
 		}
 	}
+	formData.reportValidity();
 	return false;
 }
 
@@ -88,14 +90,15 @@ signin = function(){
 			displayprofile();
 		}
 		// else display an error message
-		message.innerText = result.message;
+		var username = document.getElementById("emaillogin");
+		username.setCustomValidity(result.message);
+		formData.reportValidity();
 		return false;
 }
 
 // Clear custom validity form when the user is written in the field
 clearcustomvalidity = function(field){
 	field.setCustomValidity("")
-	
 }
 
 //Sign-out function called when the user wants to signout from the system
@@ -120,7 +123,7 @@ validatePassForm = function() {
 
 	    // Passwords validation ----------------------------------
 	    if (newpass.value.trim() != repeatnewpass.value.trim()){
-	    	messagePass.innerText = "The new pass are NOT the same!";
+			repeatnewpass.setCustomValidity("The new pass are not the same!");
 	    	newpass.focus();
 	    	return false;
 	    }
@@ -128,7 +131,7 @@ validatePassForm = function() {
 
 	    	// Characters long validation ----------------------------
 		    if(newpass.value.trim().length < X || repeatnewpass.value.trim().length < X){
-		    	messagePass.innerText = "The new pass are too short!";
+				newpass.setCustomValidity("The new pass is too short!");
 		    	return false;
 		    }
 	    	return true;
@@ -141,7 +144,7 @@ changePassword = function(){
 	var formData = document.forms["changepass-form"];
 
 	if(validatePassForm()){
-
+		var oldPassId = document.getElementById("oldpass");
 		var old_pass = formData.oldpass.value.trim();
 		var new_pass = formData.newpass.value.trim();
 
@@ -149,11 +152,12 @@ changePassword = function(){
 		var result = serverstub.changePassword(token, old_pass, new_pass);
 		// show an error message 
 		if(!result.success){
-			document.getElementById("messagePass").innerText=result.message;
+			oldPassId.setCustomValidity(result.message);
 		}else{
 			messagePass.innerText = "The password was changed successfully!";
 		}
 	}
+	formData.reportValidity();
 	return false;
 }
 
