@@ -57,15 +57,21 @@ signup = function(){
 		};
 		// try to sign up with this contact
 		var result = serverstub.signUp(newProfile);
-
+<<<<<<< Updated upstream
 		// show an error message 
+=======
+>>>>>>> Stashed changes
 		if(!result.success){
 			 var email= document.getElementById("emailsignup");
 			email.setCustomValidity("This email address already exists!");
 			
 		}else{
-
+<<<<<<< Updated upstream
 			// show the profile view and store the token into the local storage
+=======
+
+			// shox the profile view and store the token into le local storage
+>>>>>>> Stashed changes
 			document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 			var signingin=serverstub.signIn(newProfile.email,newProfile.password);
@@ -85,17 +91,27 @@ signin = function(){
 		//receive the token from the server and see if the user exist
 		var result =serverstub.signIn(formData.emaillogin.value.trim(), formData.passwordlogin.value.trim());
 		if(result.success){
+<<<<<<< Updated upstream
+			// if the user exist display his profile view and stor the token in the local storage
+=======
 			// if the user exist display his profile view and store the token in the local storage
-
+>>>>>>> Stashed changes
 			document.getElementById("navcontainer").innerHTML=document.getElementById("navview").innerHTML;
 			document.getElementById("maincontainer").innerHTML=document.getElementById("profileview").innerHTML;
 			localStorage.setItem("loggedinuser",result.data);
 			displayprofile();
+<<<<<<< Updated upstream
 		}
 		// else display an error message
 		var username = document.getElementById("emaillogin");
 		username.setCustomValidity(result.message);
 		formData.reportValidity();
+=======
+		}else{
+      // else display an error message
+  		message.innerText = result.message;
+    }
+>>>>>>> Stashed changes
 		return false;
 }
 
@@ -111,10 +127,12 @@ signout = function(){
 	localStorage.removeItem("loggedinuser");
 	document.getElementById("navcontainer").innerHTML= "";
 	document.getElementById("maincontainer").innerHTML=document.getElementById("welcomeview").innerHTML;
-
-	 // set homenav by default in the navbar
-	  localStorage.setItem('navbar',"homenav");
-
+<<<<<<< Updated upstream
+	localStorage.setItem('navbar',"homenav");
+=======
+ // set homenav by default in the navbar
+  localStorage.setItem('navbar',"homenav");
+>>>>>>> Stashed changes
 }
 
 //Function to validate the forms in account view
@@ -150,7 +168,11 @@ changePassword = function(){
 	var formData = document.forms["changepass-form"];
 
 	if(validatePassForm()){
+<<<<<<< Updated upstream
 		var oldPassId = document.getElementById("oldpass");
+=======
+
+>>>>>>> Stashed changes
 		var old_pass = formData.oldpass.value.trim();
 		var new_pass = formData.newpass.value.trim();
 
@@ -246,12 +268,17 @@ postmessage = function(){
 /*display messages of all the current profile -- also called to refresh a page*/
 displaymessages= function(){
 	var email = document.getElementById("homeemail").innerText;
-  	// get the token of the current user
+<<<<<<< Updated upstream
+=======
+  // get the token of the current user
+>>>>>>> Stashed changes
 	var token = localStorage.getItem("loggedinuser");
 	var messages = serverstub.getUserMessagesByEmail(token,email);
 
-
+<<<<<<< Updated upstream
+=======
 // get the email of the current user with his token
+>>>>>>> Stashed changes
 	var currentuseremail = serverstub.getUserDataByToken(token).data.email;
 	document.getElementById("messages").innerHTML="";
 	var result=document.getElementById("messages");
@@ -291,8 +318,11 @@ searchprofile = function(){
 	}
 }
 
-
+<<<<<<< Updated upstream
+// Main function
+=======
 // Main function- Called when the page is loading
+>>>>>>> Stashed changes
 window.onload = function(){
 	
 	displayview();
